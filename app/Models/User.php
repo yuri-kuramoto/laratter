@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //一対多の連携の設定　自分が一
+     public function tweets()
+  {
+    return $this->hasMany(Tweet::class);
+  }
+   public function likes()
+  {
+      return $this->belongsToMany(Tweet::class)->withTimestamps();
+  }
 }
