@@ -42,16 +42,14 @@ class TweetController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Tweet $tweet)
-    {
-      return view('tweets.show', compact('tweet'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
+public function show(Tweet $tweet)
+{
+  $tweet->load('comments');
+  return view('tweets.show', compact('tweet'));
+}
+
     public function edit(Tweet $tweet)
     {
          return view('tweets.edit', compact('tweet'));
