@@ -78,4 +78,29 @@ public function show(Tweet $tweet)
 
     return redirect()->route('tweets.index');
     }
+
+    /**
+ * Search for tweets containing the keyword.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\View\View
+ */
+public function search(Request $request)
+{
+
+  $query = Tweet::query();
+
+  // キーワードが指定されている場合のみ検索を実行
+  if ($request->filled('keyword')) {
+    $keyword = $request->keyword;
+    $query->where('tweet', 'like', '%' . $keyword . '%');
+  }
+
+  // ページネーションを追加（1ページに10件表示）
+  $tweets = $query
+    ->latest()
+    ->paginate(10);
+
+  return view('tweets.search', compact('tweets'));
+}
 }
