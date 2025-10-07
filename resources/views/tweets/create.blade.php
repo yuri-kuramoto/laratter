@@ -11,14 +11,35 @@
         <div class="p-6 text-gray-900 dark:text-gray-100">
           <form method="POST" action="{{ route('tweets.store') }}">
             @csrf
+
+            <!-- Tweet本文 -->
             <div class="mb-4">
-              <label for="tweet" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Tweet</label>
-              <input type="text" name="tweet" id="tweet" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <label for="tweet" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
+                Tweet
+              </label>
+              <input type="text" name="tweet" id="tweet"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline">
               @error('tweet')
               <span class="text-red-500 text-xs italic">{{ $message }}</span>
               @enderror
             </div>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Tweet</button>
+
+            <!-- 予約日時 -->
+            <div class="mb-4">
+              <label for="scheduled_at" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
+                予約日時 (任意)
+              </label>
+              <input type="datetime-local" name="scheduled_at" id="scheduled_at"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              @error('scheduled_at')
+              <span class="text-red-500 text-xs italic">{{ $message }}</span>
+              @enderror
+            </div>
+
+            <button type="submit"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Tweet
+            </button>
           </form>
         </div>
       </div>
